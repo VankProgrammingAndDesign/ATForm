@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1187</width>
+    <width>940</width>
     <height>735</height>
    </rect>
   </property>
@@ -1860,138 +1860,79 @@ hr { height: 1px; border-width: 0; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>2</number>
                      </property>
-                     <widget class="QWidget" name="start">
+                     <widget class="QWidget" name="ticketSearchAndVerify">
                       <property name="styleSheet">
-                       <string notr="true"/>
+                       <string notr="true">b</string>
                       </property>
-                      <widget class="QWidget" name="verticalLayoutWidget">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>0</y>
-                         <width>1171</width>
-                         <height>611</height>
-                        </rect>
-                       </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_21">
-                        <item>
-                         <widget class="QFrame" name="frame">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <widget class="QFrame" name="frame_content_wid_2">
-                           <property name="geometry">
-                            <rect>
-                             <x>-10</x>
-                             <y>-10</y>
-                             <width>1191</width>
-                             <height>71</height>
-                            </rect>
-                           </property>
-                           <property name="frameShape">
-                            <enum>QFrame::NoFrame</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                           <layout class="QHBoxLayout" name="horizontalLayout_10">
-                            <item>
-                             <layout class="QGridLayout" name="gridLayout_3">
-                              <property name="bottomMargin">
-                               <number>0</number>
-                              </property>
-                              <item row="0" column="0">
-                               <widget class="QLineEdit" name="ticketSearch">
-                                <property name="minimumSize">
-                                 <size>
-                                  <width>0</width>
-                                  <height>30</height>
-                                 </size>
-                                </property>
-                                <property name="styleSheet">
-                                 <string notr="true">background-color: rgb(33, 37, 43);</string>
-                                </property>
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="placeholderText">
-                                 <string>Type here</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="0" column="1">
-                               <widget class="QPushButton" name="pushButton_2">
-                                <property name="minimumSize">
-                                 <size>
-                                  <width>150</width>
-                                  <height>30</height>
-                                 </size>
-                                </property>
-                                <property name="font">
-                                 <font>
-                                  <family>Segoe UI</family>
-                                  <pointsize>10</pointsize>
-                                  <italic>false</italic>
-                                  <bold>false</bold>
-                                 </font>
-                                </property>
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
-                                </property>
-                                <property name="styleSheet">
-                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
-                                </property>
-                                <property name="text">
-                                 <string>Open</string>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-magnifying-glass.png</normaloff>:/icons/images/icons/cil-magnifying-glass.png</iconset>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="0" colspan="2">
-                               <widget class="QLabel" name="labelVersion_4">
-                                <property name="styleSheet">
-                                 <string notr="true">color: rgb(113, 126, 149);</string>
-                                </property>
-                                <property name="lineWidth">
-                                 <number>1</number>
-                                </property>
-                                <property name="text">
-                                 <string>Scan Ticket QR Code</string>
-                                </property>
-                                <property name="alignment">
-                                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </item>
-                           </layout>
-                          </widget>
-                          <widget class="QTableWidget" name="tableWidget_3">
-                           <property name="geometry">
-                            <rect>
-                             <x>0</x>
-                             <y>90</y>
-                             <width>671</width>
-                             <height>391</height>
-                            </rect>
-                           </property>
+                      <layout class="QGridLayout" name="gridLayout_3">
+                       <item row="0" column="0">
+                        <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0,0,0">
+                         <property name="spacing">
+                          <number>6</number>
+                         </property>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_6">
+                           <item>
+                            <widget class="QLineEdit" name="ticketSearch_entry">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_ticketSearch_pick">
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>10</pointsize>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(52, 59, 72);</string>
+                             </property>
+                             <property name="text">
+                              <string>Search</string>
+                             </property>
+                             <property name="icon">
+                              <iconset resource="resources.qrc">
+                               <normaloff>:/icons/images/icons/cil-magnifying-glass.png</normaloff>:/icons/images/icons/cil-magnifying-glass.png</iconset>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                         <item>
+                          <widget class="QTableWidget" name="tableWidget">
                            <row>
                             <property name="text">
-                             <string>Ticket Number</string>
+                             <string>Ticket Number:</string>
                             </property>
                            </row>
                            <row>
                             <property name="text">
-                             <string>Device Type</string>
+                             <string>Model</string>
                             </property>
                            </row>
                            <row>
@@ -2001,12 +1942,12 @@ hr { height: 1px; border-width: 0; }
                            </row>
                            <row>
                             <property name="text">
-                             <string>MFG Warranty</string>
+                             <string>Sub Issue</string>
                             </property>
                            </row>
                            <row>
                             <property name="text">
-                             <string>TRA Warranty</string>
+                             <string>Description</string>
                             </property>
                            </row>
                            <row>
@@ -2014,35 +1955,96 @@ hr { height: 1px; border-width: 0; }
                              <string>School</string>
                             </property>
                            </row>
-                           <row>
-                            <property name="text">
-                             <string>Login:</string>
-                            </property>
-                           </row>
-                           <row>
-                            <property name="text">
-                             <string>Password:</string>
-                            </property>
-                           </row>
-                           <row>
-                            <property name="text">
-                             <string>Warranty Info</string>
-                            </property>
-                           </row>
                           </widget>
-                         </widget>
-                        </item>
-                       </layout>
-                      </widget>
+                         </item>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_7">
+                           <item>
+                            <spacer name="horizontalSpacer_2">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                             <property name="sizeHint" stdset="0">
+                              <size>
+                               <width>40</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </spacer>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="clearInfo_btn">
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>10</pointsize>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(52, 59, 72);</string>
+                             </property>
+                             <property name="text">
+                              <string>Clear</string>
+                             </property>
+                             <property name="icon">
+                              <iconset resource="resources.qrc">
+                               <normaloff>:/icons/images/icons/cil-reload.png</normaloff>:/icons/images/icons/cil-reload.png</iconset>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="verifyInfo_btn">
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>10</pointsize>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(52, 59, 72);</string>
+                             </property>
+                             <property name="text">
+                              <string>Verified</string>
+                             </property>
+                             <property name="icon">
+                              <iconset resource="resources.qrc">
+                               <normaloff>:/icons/images/icons/cil-arrow-circle-right.png</normaloff>:/icons/images/icons/cil-arrow-circle-right.png</iconset>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
                      </widget>
-                     <widget class="QWidget" name="widgets">
+                     <widget class="QWidget" name="notesSelection">
                       <property name="styleSheet">
                        <string notr="true">b</string>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout">
-                       <property name="spacing">
-                        <number>10</number>
-                       </property>
+                      <layout class="QGridLayout" name="gridLayout_2">
                        <property name="leftMargin">
                         <number>10</number>
                        </property>
@@ -2055,10 +2057,10 @@ hr { height: 1px; border-width: 0; }
                        <property name="bottomMargin">
                         <number>10</number>
                        </property>
-                       <item>
+                       <item row="0" column="0">
                         <layout class="QVBoxLayout" name="verticalLayout_16">
                          <item>
-                          <widget class="QTableWidget" name="tableWidget">
+                          <widget class="QTableWidget" name="preNotesInformation_table">
                            <attribute name="horizontalHeaderVisible">
                             <bool>true</bool>
                            </attribute>
@@ -2097,7 +2099,7 @@ hr { height: 1px; border-width: 0; }
                          </item>
                         </layout>
                        </item>
-                       <item>
+                       <item row="1" column="0">
                         <widget class="QFrame" name="row_3">
                          <property name="minimumSize">
                           <size>
@@ -2128,7 +2130,7 @@ hr { height: 1px; border-width: 0; }
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QTextBrowser" name="textBrowser">
+                           <widget class="QTextBrowser" name="notesBlock_textBrowser">
                             <property name="html">
                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -2160,7 +2162,7 @@ hr { height: 1px; border-width: 0; }
                           <item>
                            <layout class="QGridLayout" name="gridLayout">
                             <item row="1" column="0">
-                             <widget class="QPushButton" name="pushButton_8">
+                             <widget class="QPushButton" name="addInspectionLine_btn">
                               <property name="minimumSize">
                                <size>
                                 <width>150</width>
@@ -2219,7 +2221,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="3" column="1">
-                             <widget class="QLineEdit" name="ticketSearch_8">
+                             <widget class="QLineEdit" name="batteryCycle_entry">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
@@ -2238,7 +2240,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="6" column="2">
-                             <widget class="QCheckBox" name="checkBox_4">
+                             <widget class="QCheckBox" name="osUpdated_checkbox">
                               <property name="layoutDirection">
                                <enum>Qt::RightToLeft</enum>
                               </property>
@@ -2271,7 +2273,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="3" column="2">
-                             <widget class="QLineEdit" name="ticketSearch_7">
+                             <widget class="QLineEdit" name="os_entry">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
@@ -2290,7 +2292,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="3" column="0">
-                             <widget class="QLineEdit" name="ticketSearch_5">
+                             <widget class="QLineEdit" name="batteryHealth_entry">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
@@ -2309,7 +2311,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="5" column="1">
-                             <widget class="QCheckBox" name="checkBox_2">
+                             <widget class="QCheckBox" name="shimRan_checkbox">
                               <property name="sizePolicy">
                                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                 <horstretch>0</horstretch>
@@ -2325,7 +2327,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="1" column="1">
-                             <widget class="QPushButton" name="pushButton_9">
+                             <widget class="QPushButton" name="addRepairLine_btn">
                               <property name="minimumSize">
                                <size>
                                 <width>150</width>
@@ -2356,7 +2358,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="1" column="2">
-                             <widget class="QPushButton" name="pushButton_10">
+                             <widget class="QPushButton" name="addVerificationLine_btn">
                               <property name="minimumSize">
                                <size>
                                 <width>150</width>
@@ -2387,7 +2389,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="10" column="2">
-                             <widget class="QPushButton" name="pushButton_11">
+                             <widget class="QPushButton" name="confirmNotes_btn">
                               <property name="minimumSize">
                                <size>
                                 <width>150</width>
@@ -2418,7 +2420,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="10" column="0">
-                             <widget class="QPushButton" name="pushButton_12">
+                             <widget class="QPushButton" name="copyNotes_btn">
                               <property name="minimumSize">
                                <size>
                                 <width>150</width>
@@ -2449,7 +2451,7 @@ hr { height: 1px; border-width: 0; }
                              </widget>
                             </item>
                             <item row="5" column="2">
-                             <widget class="QCheckBox" name="checkBox_3">
+                             <widget class="QCheckBox" name="prevMaintPerformed_checkbox">
                               <property name="sizePolicy">
                                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                                 <horstretch>0</horstretch>
@@ -2488,10 +2490,10 @@ hr { height: 1px; border-width: 0; }
                              </spacer>
                             </item>
                             <item row="0" column="0" colspan="3">
-                             <widget class="QLineEdit" name="lineEdit"/>
+                             <widget class="QLineEdit" name="customNote_entry"/>
                             </item>
                             <item row="6" column="1">
-                             <widget class="QCheckBox" name="checkBox_5">
+                             <widget class="QCheckBox" name="partialVerification_checkbox">
                               <property name="layoutDirection">
                                <enum>Qt::RightToLeft</enum>
                               </property>
@@ -2507,17 +2509,211 @@ hr { height: 1px; border-width: 0; }
                        </item>
                       </layout>
                      </widget>
-                     <widget class="QWidget" name="new_page">
+                     <widget class="QWidget" name="page">
+                      <layout class="QGridLayout" name="gridLayout_4">
+                       <item row="0" column="0">
+                        <layout class="QVBoxLayout" name="verticalLayout_19">
+                         <item>
+                          <widget class="QTableWidget" name="pickeableParts_table">
+                           <column>
+                            <property name="text">
+                             <string>Test1</string>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>Autotask Name</string>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>Select</string>
+                            </property>
+                           </column>
+                          </widget>
+                         </item>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_8">
+                           <item>
+                            <spacer name="horizontalSpacer_7">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                             <property name="sizeHint" stdset="0">
+                              <size>
+                               <width>40</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </spacer>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="pickParts_btn">
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>10</pointsize>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(52, 59, 72);</string>
+                             </property>
+                             <property name="text">
+                              <string>Pick</string>
+                             </property>
+                             <property name="icon">
+                              <iconset resource="resources.qrc">
+                               <normaloff>:/icons/images/icons/cil-arrow-circle-right.png</normaloff>:/icons/images/icons/cil-arrow-circle-right.png</iconset>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="userSelection">
                       <layout class="QVBoxLayout" name="verticalLayout_20">
                        <item>
-                        <widget class="QLabel" name="home">
-                         <property name="text">
-                          <string>NEW PAGE TEST</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
+                        <layout class="QVBoxLayout" name="verticalLayout">
+                         <item>
+                          <spacer name="horizontalSpacer_5">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_9">
+                           <item>
+                            <widget class="QComboBox" name="user_comboBox">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>350</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <spacer name="horizontalSpacer_6">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                             <property name="sizeType">
+                              <enum>QSizePolicy::Minimum</enum>
+                             </property>
+                             <property name="sizeHint" stdset="0">
+                              <size>
+                               <width>30</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </spacer>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_4">
+                             <property name="maximumSize">
+                              <size>
+                               <width>60</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="text">
+                              <string>Login Pin:</string>
+                             </property>
+                             <property name="margin">
+                              <number>2</number>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="pin_entry">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_ticketSearch_pick_2">
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>10</pointsize>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(52, 59, 72);</string>
+                             </property>
+                             <property name="text">
+                              <string>Login</string>
+                             </property>
+                             <property name="icon">
+                              <iconset resource="resources.qrc">
+                               <normaloff>:/icons/images/icons/cil-arrow-circle-right.png</normaloff>:/icons/images/icons/cil-arrow-circle-right.png</iconset>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_4">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
                        </item>
                       </layout>
                      </widget>
@@ -2855,6 +3051,7 @@ hr { height: 1px; border-width: 0; }
  </widget>
  <resources>
   <include location="resources.qrc"/>
+  <include location="../ATAsisstant/resources.qrc"/>
  </resources>
  <connections/>
 </ui>
