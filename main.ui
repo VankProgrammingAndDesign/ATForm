@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1267</width>
-    <height>817</height>
+    <width>1035</width>
+    <height>722</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1664,7 +1664,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>5</number>
                      </property>
                      <widget class="QWidget" name="userSelection">
                       <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2717,7 +2717,7 @@ p, li { white-space: pre-wrap; }
                             </spacer>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="pickParts_btn_2">
+                            <widget class="QPushButton" name="finalizeTicket_btn">
                              <property name="minimumSize">
                               <size>
                                <width>150</width>
@@ -2740,7 +2740,7 @@ p, li { white-space: pre-wrap; }
                               <string notr="true">background-color: rgb(52, 59, 72);</string>
                              </property>
                              <property name="text">
-                              <string>Pick</string>
+                              <string>Finalize</string>
                              </property>
                              <property name="icon">
                               <iconset resource="resources.qrc">

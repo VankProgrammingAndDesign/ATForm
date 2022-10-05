@@ -64,7 +64,40 @@ class MainWindow(QMainWindow):
         #widgets.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # BUTTONS CLICK
+        # Add for each clickable button
         # ///////////////////////////////////////////////////////////////
+        
+        # userSelection
+        widgets.login_btn.clicked.connect(self.buttonClick)
+
+        # ticketSearchAndVerify
+        widgets.clearInfo_btn.clicked.connect(self.buttonClick)
+        widgets.ticketSearch_btn.clicked.connect(self.buttonClick)
+        widgets.verifyInfo_btn.clicked.connect(self.buttonClick)
+        
+        #pickParts
+        widgets.pickParts_btn.clicked.connect(self.buttonClick)
+
+        #pickSummary
+        widgets.confirmPick_btn.clicked.connect(self.buttonClick)
+
+        #notesSelection
+        widgets.addInspectionLine_btn.clicked.connect(self.buttonClick)
+        widgets.addRepairLine_btn.clicked.connect(self.buttonClick)
+        widgets.addVerificationLine_btn.clicked.connect(self.buttonClick)
+        widgets.copyNotes_btn.clicked.connect(self.buttonClick)
+        widgets.confirmNotes_btn.clicked.connect(self.buttonClick)
+
+        #ticketSummary
+        widgets.finalizeTicket_btn.clicked.connect(self.buttonClick)
+
+
+        #widgets..clicked.connect(self.buttonClick)
+
+
+
+
+
 
         # LEFT MENUS
         widgets.btn_home.clicked.connect(self.buttonClick)

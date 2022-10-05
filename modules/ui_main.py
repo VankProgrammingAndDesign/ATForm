@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1267, 817)
+        MainWindow.resize(1035, 722)
         MainWindow.setMinimumSize(QSize(940, 560))
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
@@ -1475,15 +1475,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addItem(self.horizontalSpacer_9)
 
-        self.pickParts_btn_2 = QPushButton(self.ticketSummary)
-        self.pickParts_btn_2.setObjectName(u"pickParts_btn_2")
-        self.pickParts_btn_2.setMinimumSize(QSize(150, 50))
-        self.pickParts_btn_2.setFont(font)
-        self.pickParts_btn_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pickParts_btn_2.setStyleSheet(u"background-color: rgb(52, 59, 72);")
-        self.pickParts_btn_2.setIcon(icon3)
+        self.finalizeTicket_btn = QPushButton(self.ticketSummary)
+        self.finalizeTicket_btn.setObjectName(u"finalizeTicket_btn")
+        self.finalizeTicket_btn.setMinimumSize(QSize(150, 50))
+        self.finalizeTicket_btn.setFont(font)
+        self.finalizeTicket_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.finalizeTicket_btn.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+        self.finalizeTicket_btn.setIcon(icon3)
 
-        self.horizontalLayout_11.addWidget(self.pickParts_btn_2)
+        self.horizontalLayout_11.addWidget(self.finalizeTicket_btn)
 
 
         self.verticalLayout_18.addLayout(self.horizontalLayout_11)
@@ -1633,7 +1633,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(5)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1795,7 +1795,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"New Column", None));
         ___qtablewidgetitem25 = self.ticketNotesSummary_table.horizontalHeaderItem(4)
         ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"New Column", None));
-        self.pickParts_btn_2.setText(QCoreApplication.translate("MainWindow", u"Pick", None))
+        self.finalizeTicket_btn.setText(QCoreApplication.translate("MainWindow", u"Finalize", None))
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))
         self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
