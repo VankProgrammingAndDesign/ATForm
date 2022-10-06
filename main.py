@@ -21,12 +21,16 @@ import platform
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
 from modules import *
+from modules.dbHandler import *
+from modules.ticket import Ticket
 from widgets import *
+
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
 # ///////////////////////////////////////////////////////////////
 widgets = None
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -54,14 +58,17 @@ class MainWindow(QMainWindow):
         # TOGGLE MENU
         # ///////////////////////////////////////////////////////////////
         #widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
+        
 
         # SET UI DEFINITIONS
         # ///////////////////////////////////////////////////////////////
         UIFunctions.uiDefinitions(self)
-
+    
         # QTableWidget PARAMETERS
         # ///////////////////////////////////////////////////////////////
-        #widgets.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        widgets.preRepairVerify_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        widgets.preRepairVerify_table.horizontalHeader().hide()
+
 
         # BUTTONS CLICK
         # Add for each clickable button
@@ -94,11 +101,6 @@ class MainWindow(QMainWindow):
 
         #widgets..clicked.connect(self.buttonClick)
 
-
-
-
-
-
         # LEFT MENUS
         widgets.btn_home.clicked.connect(self.buttonClick)
 
@@ -112,6 +114,14 @@ class MainWindow(QMainWindow):
         #def openCloseRightBox():
         #    UIFunctions.toggleRightBox(self, True)
         #widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
+
+        #Fill Users
+        users = getAllUsers()
+        for user in users:
+            widgets.user_comboBox.addItem(user)
+
+        #Adjust preRepairVerify_table
+        widgets.preRepairVerify_table.insertColumn(0)
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
@@ -132,10 +142,10 @@ class MainWindow(QMainWindow):
 
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
-        widgets.stackedWidget.setCurrentWidget(widgets.ticketSummary)
+        widgets.stackedWidget.setCurrentWidget(widgets.userSelection)
         widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
 
-
+    
     # BUTTONS CLICK
     # Post here your functions for clicked buttons
     # ///////////////////////////////////////////////////////////////
@@ -143,6 +153,42 @@ class MainWindow(QMainWindow):
         # GET BUTTON CLICKED
         btn = self.sender()
         btnName = btn.objectName()
+
+
+        def tryLogin(self):
+            selectedUser = widgets.user_comboBox.currentText()
+            pinEntry = widgets.pin_entry.text()
+            actualPin = getUsersPin(selectedUser)
+            print("Trying login for: " + selectedUser)
+            print("Pin Entry: " + pinEntry)
+            print("Actual Pin: " + actualPin)
+
+            if(pinEntry == actualPin):
+                print("Login Succesful")
+                widgets.stackedWidget.setCurrentWidget(widgets.ticketSearchAndVerify)
+            else:
+                print("Unsuccesful Login")
+            
+        def searchForTicket(self):
+            #TODO ticket entry error handling
+            #TODO no ticket found handling
+
+            #find ticket based on user entry
+            resultsTicket = Ticket(getTicketInfo(widgets.ticketSearch_entry.text()))
+            widgets.preRepairVerify_table.setItem(0,0, QTableWidgetItem(resultsTicket.ticketNum)) #Ticket Number
+            widgets.preRepairVerify_table.setItem(0,1, QTableWidgetItem(resultsTicket.model)) #Model
+            widgets.preRepairVerify_table.setItem(0,2, QTableWidgetItem(resultsTicket.deviceSN))#Serial Number
+            #Sub issue
+            #Description
+            #School
+            resultsTicket.deviceSN
+            resultsTicket.status
+
+        def clearSearch(self):
+            print("Clearing Search Screen")
+            widgets.preRepairVerify_table.clearContents()
+            widgets.ticketSearch_entry.clear()
+
 
         # SHOW HOME PAGE
         if btnName == "btn_home":
@@ -162,8 +208,17 @@ class MainWindow(QMainWindow):
         #     UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
         #     btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
 
-        # if btnName == "btn_save":
-        #     print("Save BTN clicked!")
+        if btnName == "login_btn":
+            tryLogin(self)
+
+        if btnName == "ticketSearch_btn":
+            searchForTicket(self)
+
+        if btnName == "clearInfo_btn":
+            clearSearch(self)
+
+        if btnName == "verifyInfo_btn":
+            widgets.stackedWidget.setCurrentWidget(widgets.pickParts)
 
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')
