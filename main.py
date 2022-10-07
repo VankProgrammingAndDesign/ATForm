@@ -14,6 +14,7 @@
 #
 # ///////////////////////////////////////////////////////////////
 
+from json import load
 import sys
 import os
 import platform
@@ -69,6 +70,16 @@ class MainWindow(QMainWindow):
         widgets.preRepairVerify_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         widgets.preRepairVerify_table.horizontalHeader().hide()
 
+        header = widgets.pickeableParts_table.horizontalHeader()
+
+        header = widgets.pickeableParts_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)       
+        header.setSectionResizeMode(2, QHeaderView.Stretch)
+        
+
+        widgets.pickeableParts_table.horizontalHeader().hide()
+        widgets.pickeableParts_table.verticalHeader().hide()
+        
 
         # BUTTONS CLICK
         # Add for each clickable button
@@ -174,20 +185,36 @@ class MainWindow(QMainWindow):
             #TODO no ticket found handling
 
             #find ticket based on user entry
-            resultsTicket = Ticket(getTicketInfo(widgets.ticketSearch_entry.text()))
-            widgets.preRepairVerify_table.setItem(0,0, QTableWidgetItem(resultsTicket.ticketNum)) #Ticket Number
-            widgets.preRepairVerify_table.setItem(0,1, QTableWidgetItem(resultsTicket.model)) #Model
-            widgets.preRepairVerify_table.setItem(0,2, QTableWidgetItem(resultsTicket.deviceSN))#Serial Number
+            self.currentTicket = Ticket(getTicketInfo(widgets.ticketSearch_entry.text()))
+            widgets.preRepairVerify_table.setItem(0,0, QTableWidgetItem(self.currentTicket.ticketNum)) #Ticket Number
+            widgets.preRepairVerify_table.setItem(0,1, QTableWidgetItem(self.currentTicket.model)) #Model
+            widgets.preRepairVerify_table.setItem(0,2, QTableWidgetItem(self.currentTicket.deviceSN))#Serial Number
             #Sub issue
             #Description
             #School
-            resultsTicket.deviceSN
-            resultsTicket.status
+            self.currentTicket.status
 
         def clearSearch(self):
             print("Clearing Search Screen")
             widgets.preRepairVerify_table.clearContents()
             widgets.ticketSearch_entry.clear()
+        
+        def loadPickeableParts(self):
+            widgets.pickeableParts_table.setColumnCount(0)  #clear all columns
+            widgets.pickeableParts_table.insertColumn(0)    #Part Category
+            widgets.pickeableParts_table.insertColumn(1)    #Checkbox
+            widgets.pickeableParts_table.insertColumn(2)    #Autotask Entry
+            parts = self.currentTicket.parts
+
+            for part in parts:
+                rowPosition = widgets.pickeableParts_table.rowCount()
+                widgets.pickeableParts_table.insertRow(rowPosition)
+
+                widgets.pickeableParts_table.setItem(rowPosition , 0, QTableWidgetItem(part))
+                widgets.pickeableParts_table.setCellWidget(rowPosition, 1, QCheckBox())
+                widgets.pickeableParts_table.setItem(rowPosition , 2, QTableWidgetItem(parts[part]))
+            
+
 
 
         # SHOW HOME PAGE
@@ -219,6 +246,8 @@ class MainWindow(QMainWindow):
 
         if btnName == "verifyInfo_btn":
             widgets.stackedWidget.setCurrentWidget(widgets.pickParts)
+            loadPickeableParts(self)
+            
 
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')
@@ -246,4 +275,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
