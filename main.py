@@ -79,7 +79,18 @@ class MainWindow(QMainWindow):
 
         widgets.pickeableParts_table.horizontalHeader().hide()
         widgets.pickeableParts_table.verticalHeader().hide()
-        
+
+        widgets.preRepairVerify_table.insertColumn(0)
+
+        widgets.pickSummary_table.horizontalHeader().hide()
+        widgets.pickSummary_table.verticalHeader().hide()
+        widgets.pickSummary_table.insertColumn(0)#Cat
+        widgets.pickSummary_table.insertColumn(1)#Part Name
+        widgets.pickSummary_table.insertColumn(2)#Stock
+
+        header = widgets.pickSummary_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)       
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
 
         # BUTTONS CLICK
         # Add for each clickable button
@@ -115,24 +126,12 @@ class MainWindow(QMainWindow):
         # LEFT MENUS
         widgets.btn_home.clicked.connect(self.buttonClick)
 
-        # EXTRA LEFT BOX
-        #def openCloseLeftBox():
-        #    UIFunctions.toggleLeftBox(self, True)
-        #widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
-        #widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
-
-        # EXTRA RIGHT BOX
-        #def openCloseRightBox():
-        #    UIFunctions.toggleRightBox(self, True)
-        #widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
-
         #Fill Users
         users = getAllUsers()
         for user in users:
             widgets.user_comboBox.addItem(user)
 
-        #Adjust preRepairVerify_table
-        widgets.preRepairVerify_table.insertColumn(0)
+        
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
@@ -195,26 +194,47 @@ class MainWindow(QMainWindow):
             self.currentTicket.status
 
         def clearSearch(self):
-            print("Clearing Search Screen")
             widgets.preRepairVerify_table.clearContents()
             widgets.ticketSearch_entry.clear()
         
         def loadPickeableParts(self):
             widgets.pickeableParts_table.setColumnCount(0)  #clear all columns
+            widgets.pickeableParts_table.setRowCount(0)  #clear all rows
             widgets.pickeableParts_table.insertColumn(0)    #Part Category
             widgets.pickeableParts_table.insertColumn(1)    #Checkbox
             widgets.pickeableParts_table.insertColumn(2)    #Autotask Entry
             parts = self.currentTicket.parts
 
-            for part in parts:
+            #Insert part names and categories into table
+            self.checkboxes =[]
+            for cat in parts:
+                cb = QCheckBox()
+                self.checkboxes.append(cb)
                 rowPosition = widgets.pickeableParts_table.rowCount()
                 widgets.pickeableParts_table.insertRow(rowPosition)
-
-                widgets.pickeableParts_table.setItem(rowPosition , 0, QTableWidgetItem(part))
-                widgets.pickeableParts_table.setCellWidget(rowPosition, 1, QCheckBox())
-                widgets.pickeableParts_table.setItem(rowPosition , 2, QTableWidgetItem(parts[part]))
+                widgets.pickeableParts_table.setItem(rowPosition , 0, QTableWidgetItem(cat))
+                widgets.pickeableParts_table.setCellWidget(rowPosition, 1, cb)
+                widgets.pickeableParts_table.setItem(rowPosition , 2, QTableWidgetItem(parts[cat]))
             
+        def getPickedParts(self):
+            partsToPick = {}
+            checkboxes = self.checkboxes
+            parts = self.currentTicket.parts
 
+            #loop through checkboxes and locate parts to pick
+            for cb,cat in zip(checkboxes,parts):
+                if(cb.isChecked()):
+                    partsToPick[cat] = parts[cat]
+            self.partsToPick = partsToPick
+            stock = getPartStocks(partsToPick.values())
+            #Loop through partsToPick and add to pickSummary_table
+            for cat,part in zip(partsToPick,stock):
+                rowPosition = widgets.pickSummary_table.rowCount()
+                widgets.pickSummary_table.insertRow(rowPosition)
+                widgets.pickSummary_table.setItem(rowPosition, 0, QTableWidgetItem(cat))
+                widgets.pickSummary_table.setItem(rowPosition, 1, QTableWidgetItem(partsToPick[cat]))
+                widgets.pickSummary_table.setItem(rowPosition, 2, QTableWidgetItem("Stock available: " + stock[part]))
+                    
 
 
         # SHOW HOME PAGE
@@ -222,12 +242,6 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.userSelection)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-
-        # SHOW WIDGETS PAGE
-        # if btnName == "btn_widgets":
-        #     widgets.stackedWidget.setCurrentWidget(widgets.widgets)
-        #     UIFunctions.resetStyle(self, btnName)
-        #     btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
 
         # SHOW NEW PAGE
         # if btnName == "btn_new":
@@ -240,14 +254,23 @@ class MainWindow(QMainWindow):
 
         if btnName == "ticketSearch_btn":
             searchForTicket(self)
+            #TODO handle no partList found errors
+            #TODO link to return key
 
         if btnName == "clearInfo_btn":
-            clearSearch(self)
+            clearSearch(self) 
 
         if btnName == "verifyInfo_btn":
-            widgets.stackedWidget.setCurrentWidget(widgets.pickParts)
+            widgets.stackedWidget.setCurrentWidget(widgets.pickParts) #Advance to pickParts
             loadPickeableParts(self)
+            #TODO make button unclickeable if ticketSearch_btn has not been pressed. 
+            #TODO link to return key
+
+        if btnName == "pickParts_btn":
+            getPickedParts(self)
+            widgets.stackedWidget.setCurrentWidget(widgets.pickSummary) #Advance to pickSummary
             
+        
 
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')

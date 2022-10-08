@@ -11,6 +11,7 @@ db = client.AutotaskRPA
 ticketsDB = db.tickets
 partsDB = db.parts
 usersDB = db.users
+stockDB = db.stock
 
 #Tickets collection
 
@@ -55,7 +56,15 @@ def getUsersPin(selectedUser):
     return pin
 
 
-
+def getPartStocks(parts):
+    stockAmounts = {}
+    print(parts)
+    for part in parts:
+        stockResults = stockDB.find_one({'Product':part})
+        stockAmount = stockResults['Available']
+        stockAmounts[part] =stockAmount
+    print(str(stockAmounts))
+    return stockAmounts
 
 #Testing
 #searchEntry = True
@@ -64,5 +73,3 @@ def getUsersPin(selectedUser):
 #     #print(getTicketInfo(searchEntry))
 #     test1 = Ticket(getTicketInfo(searchEntry))
 #     test1.printTicket()
-
-
