@@ -76,19 +76,25 @@ class MainWindow(QMainWindow):
         header.setSectionResizeMode(QHeaderView.ResizeToContents)       
         header.setSectionResizeMode(2, QHeaderView.Stretch)
         
-
+        
         widgets.pickeableParts_table.horizontalHeader().hide()
         widgets.pickeableParts_table.verticalHeader().hide()
 
         widgets.preRepairVerify_table.insertColumn(0)
-
+        
+        widgets.pickSummary_table.setColumnCount(0)
         widgets.pickSummary_table.horizontalHeader().hide()
         widgets.pickSummary_table.verticalHeader().hide()
-        widgets.pickSummary_table.insertColumn(0)#Cat
-        widgets.pickSummary_table.insertColumn(1)#Part Name
-        widgets.pickSummary_table.insertColumn(2)#Stock
 
         header = widgets.pickSummary_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)       
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+
+        widgets.preNotesInformation_table.setColumnCount(0)
+        widgets.preNotesInformation_table.horizontalHeader().hide()
+        widgets.preNotesInformation_table.verticalHeader().hide()
+
+        header = widgets.preNotesInformation_table.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeToContents)       
         header.setSectionResizeMode(1, QHeaderView.Stretch)
 
@@ -203,7 +209,11 @@ class MainWindow(QMainWindow):
             widgets.pickeableParts_table.insertColumn(0)    #Part Category
             widgets.pickeableParts_table.insertColumn(1)    #Checkbox
             widgets.pickeableParts_table.insertColumn(2)    #Autotask Entry
+            widgets.pickeableParts_table.insertColumn(3)    #Stock
             parts = self.currentTicket.parts
+
+            #Grabs stock info
+            stock = getPartStocks(parts.values())
 
             #Insert part names and categories into table
             self.checkboxes =[]
@@ -212,12 +222,19 @@ class MainWindow(QMainWindow):
                 self.checkboxes.append(cb)
                 rowPosition = widgets.pickeableParts_table.rowCount()
                 widgets.pickeableParts_table.insertRow(rowPosition)
-                widgets.pickeableParts_table.setItem(rowPosition , 0, QTableWidgetItem(cat))
-                widgets.pickeableParts_table.setCellWidget(rowPosition, 1, cb)
-                widgets.pickeableParts_table.setItem(rowPosition , 2, QTableWidgetItem(parts[cat]))
+                widgets.pickeableParts_table.setItem(rowPosition , 0, QTableWidgetItem(cat))    #Category
+                widgets.pickeableParts_table.setCellWidget(rowPosition, 1, cb)                  #Checkbox
+                widgets.pickeableParts_table.setItem(rowPosition , 2, QTableWidgetItem(parts[cat])) #Part Name
+                widgets.pickeableParts_table.setItem(rowPosition , 3, QTableWidgetItem(stock[parts[cat]])) #Part Stock
             
         def getPickedParts(self):
-            partsToPick = {}
+            widgets.pickSummary_table.setColumnCount(0)  #clear all columns
+            widgets.pickSummary_table.setRowCount(0)  #clear all rows
+            widgets.pickSummary_table.insertColumn(0)    #Part Category
+            widgets.pickSummary_table.insertColumn(1)    #Autotask Entry
+            widgets.pickSummary_table.insertColumn(2)    #Stock
+            
+            partsToPick={}
             checkboxes = self.checkboxes
             parts = self.currentTicket.parts
 
@@ -227,6 +244,7 @@ class MainWindow(QMainWindow):
                     partsToPick[cat] = parts[cat]
             self.partsToPick = partsToPick
             stock = getPartStocks(partsToPick.values())
+
             #Loop through partsToPick and add to pickSummary_table
             for cat,part in zip(partsToPick,stock):
                 rowPosition = widgets.pickSummary_table.rowCount()
@@ -235,7 +253,24 @@ class MainWindow(QMainWindow):
                 widgets.pickSummary_table.setItem(rowPosition, 1, QTableWidgetItem(partsToPick[cat]))
                 widgets.pickSummary_table.setItem(rowPosition, 2, QTableWidgetItem("Stock available: " + stock[part]))
                     
+        def loadPreNotesInfo(self):
+            widgets.preNotesInformation_table.setColumnCount(0)  #clear all columns
+            widgets.preNotesInformation_table.setRowCount(0)  #clear all rows
+            widgets.preNotesInformation_table.insertColumn(0)    #Part Category
+            widgets.preNotesInformation_table.insertColumn(1)    #Autotask Entry
+            widgets.preNotesInformation_table.insertColumn(2)    #Stockd
+            
+            pickedParts={}
+            pickedParts=self.pickedParts
+            stock = getPartStocks(pickedParts.values())
 
+            #Loop through pickedParts and add to preNotesInformation_table
+            for cat,part in zip(pickedParts,stock):
+                rowPosition = widgets.preNotesInformation_table.rowCount()
+                widgets.preNotesInformation_table.insertRow(rowPosition)
+                widgets.preNotesInformation_table.setItem(rowPosition, 0, QTableWidgetItem(cat))
+                widgets.preNotesInformation_table.setItem(rowPosition, 1, QTableWidgetItem(pickedParts[cat]))
+                widgets.preNotesInformation_table.setItem(rowPosition, 2, QTableWidgetItem("Stock available: " + stock[part]))
 
         # SHOW HOME PAGE
         if btnName == "btn_home":
@@ -270,7 +305,10 @@ class MainWindow(QMainWindow):
             getPickedParts(self)
             widgets.stackedWidget.setCurrentWidget(widgets.pickSummary) #Advance to pickSummary
             
-        
+        if btnName == "confirmPick_btn":
+            self.pickedParts=self.partsToPick
+            loadPreNotesInfo(self)
+            widgets.stackedWidget.setCurrentWidget(widgets.notesSelection) #Advance to notesSelection
 
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')

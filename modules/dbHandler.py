@@ -60,10 +60,10 @@ def getPartStocks(parts):
     stockAmounts = {}
     print(parts)
     for part in parts:
+        print("Getting stock for: " + part)
         stockResults = stockDB.find_one({'Product':part})
         stockAmount = stockResults['Available']
         stockAmounts[part] =stockAmount
-    print(str(stockAmounts))
     return stockAmounts
 
 #Testing
